@@ -1,11 +1,12 @@
-"""Главный файл конфигурации URL проекта."""
-from api import views
+"""Главный файл конфигурации URL проекта Taski."""
 from django.contrib import admin
 from django.urls import include, path
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
 
-router = routers.DefaultRouter()
-router.register('tasks', views.TaskView, 'task')
+from api import views
+
+router = DefaultRouter()
+router.register('tasks', views.TaskViewSet, basename='task')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
