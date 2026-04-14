@@ -1,15 +1,16 @@
-from rest_framework import status, viewsets
-from rest_framework.response import Response
+"""Представления (Views) для обработки запросов API."""
+from rest_framework import viewsets
 
 from .models import Task
 from .serializers import TaskSerializer
 
 
-class TaskView(viewsets.ModelViewSet):
-    serializer_class = TaskSerializer
-    queryset = Task.objects.all()
+class TaskViewSet(viewsets.ModelViewSet):
+    """Набор представлений для работы с задачами."""
 
-    def destroy(self, *args, **kwargs):
-        serializer = self.get_serializer(self.get_object())
-        super().destroy(*args, **kwargs)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+
+    def perform_create(self, serializer):
+        """Логика при создании новой задачи."""
+        serializer.save()

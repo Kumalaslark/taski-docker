@@ -1,4 +1,4 @@
-"""Модуль для тестирования API проекта Taski."""
+"""Тесты для проверки работоспособности API."""
 from http import HTTPStatus
 from api import models
 

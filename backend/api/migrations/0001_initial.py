@@ -1,12 +1,9 @@
+"""Начальная миграция для создания модели Task."""
 from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-    """
-    Начальная миграция для проекта Taski.
-
-    Создает модель Task с полями title, description и status.
-    """
+    """Класс миграции для создания структуры БД."""
 
     initial = True
 
