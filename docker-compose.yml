@@ -1,0 +1,32 @@
+volumes:
+  pg_data:
+  static:  # 1. Объявляем общий том, где будут лежать стили и статика
+
+services:
+  db:
+    image: postgres:13.10
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend/
+    env_file: .env
+    depends_on:
+      - db
+    volumes:
+      - static:/backend_static  # 2. Подключаем том к бэкенду
+
+  frontend:
+    build: ./frontend/
+    env_file: .env
+    volumes:
+      - static:/frontend_static # 3. Подключаем том к фронтенду
+    command: cp -r /app/build/. /frontend_static/ # 4. Автоматически копируем билд фронта в том
+
+  gateway:
+    build: ./gateway/
+    ports:
+      - 8000:80
+    volumes:
+      - static:/staticfiles     # 5. Подключаем том к Nginx, чтобы он отдавал файлы
