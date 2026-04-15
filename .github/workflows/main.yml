@@ -63,7 +63,7 @@ jobs:
           cd frontend/
           npm run test
 
-  # 4. Билд и пуш фронтенда
+  # 4. Билд и пуш фронтенда 
   build_frontend_and_push_to_docker_hub:
     name: Push frontend Docker image to DockerHub
     runs-on: ubuntu-latest
