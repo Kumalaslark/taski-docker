@@ -43,7 +43,7 @@ jobs:
         with:
           context: ./backend/
           push: true
-          tags: kumalaslark/taski_frontend:latest 
+          tags: kumalaslark/taski_backend:latest 
 
   # 3. Тесты фронтенда
   frontend_tests:
